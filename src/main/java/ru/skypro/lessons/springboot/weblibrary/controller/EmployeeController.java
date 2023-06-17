@@ -27,7 +27,7 @@ public class EmployeeController {
     }
 
     @GetMapping("salary/sum")
-    public long findSumSalariesOfEmployees() {
+    public double findSumSalariesOfEmployees() {
         return employeeService.findSumSalariesOfEmployees();
     }
 

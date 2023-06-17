@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public long findSumSalariesOfEmployees() {
+    public double findSumSalariesOfEmployees() {
         return employeeRepository.getAllEmployees().stream()
                 .mapToInt(Employee::getSalary)
                 .sum();
@@ -38,11 +38,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findEmployeesWithAboveAverageSalaries() {
-        int sum = employeeRepository.getAllEmployees().stream()
+        List<Employee> employees = employeeRepository.getAllEmployees();
+        double avgSalary = employees.stream()
                 .mapToInt(Employee::getSalary)
-                .sum();
-        return employeeRepository.getAllEmployees().stream()
-                .filter(a -> a.getSalary() > sum / getAllEmployees().size())
+                .average()
+                .getAsDouble();
+        return employees.stream()
+                .filter(employee -> employee.getSalary() > avgSalary / getAllEmployees().size())
                 .collect(Collectors.toList());
     }
 

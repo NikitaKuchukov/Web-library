@@ -8,7 +8,7 @@ public interface EmployeeService {
     List<Employee> getAllEmployees();
     Employee findEmployeeWithMinSalary();
     Employee findEmployeeWithMaxSalary();
-    long findSumSalariesOfEmployees();
+    double findSumSalariesOfEmployees();
     List<Employee> findEmployeesWithAboveAverageSalaries();
 
 }
